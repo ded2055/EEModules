@@ -1,4 +1,4 @@
-package Module3.Module3_1.Examples;
+package Module3.Module3_2.Examples;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
