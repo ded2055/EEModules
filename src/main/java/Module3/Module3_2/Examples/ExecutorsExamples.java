@@ -12,7 +12,22 @@ public class ExecutorsExamples {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorsExamples executorsExamples = new ExecutorsExamples();
-        executorsExamples.testScheduledAtFixedRate();
+        executorsExamples.test();
+    }
+
+    public void test() {
+        Exchanger<String> exchanger = new Exchanger<>();
+        Random random = new Random();
+        IntStream.range(0, 2).forEach((i) -> new Thread(() -> {
+            try {
+                Thread.sleep(random.nextInt(1000));
+                String name = Thread.currentThread().getName();
+                System.out.println(name + " ready to exchange");
+                System.out.println(name + " < - > " + exchanger.exchange(name));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }));
     }
 
     public void testExecute() {
@@ -76,7 +91,7 @@ public class ExecutorsExamples {
             Thread.sleep(random.nextInt(1000));
             return String.valueOf(i);
         }));
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        ExecutorService executorService = Executors.newCachedThreadPool();
         List<Future<String>> result = executorService.invokeAll(callables);
 
         for (Future f :
@@ -88,7 +103,7 @@ public class ExecutorsExamples {
 
     public void testScheduled() {
         ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
-        System.out.println("Task scheduled "+new Date());
+        System.out.println("Task scheduled " + new Date());
         scheduledExecutorService.schedule(new Runnable() {
             @Override
             public void run() {
@@ -100,7 +115,7 @@ public class ExecutorsExamples {
 
     public void testScheduledAtFixedRate() throws InterruptedException {
         ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
-        System.out.println("Task scheduled "+new Date());
+        System.out.println("Task scheduled " + new Date());
         scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
