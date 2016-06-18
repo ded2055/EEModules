@@ -38,10 +38,10 @@ class SquareSumNThreads implements SquareSum {
             System.out.println(Thread.currentThread().getName() + " Executing phase " + phaser.getPhase());
             for (int j = i * (values.length / numberOfThreads); j < ((i == (numberOfThreads - 1)) ? values.length : (values.length / numberOfThreads) * (i + 1)); j++) {
                 result += values[j] * values[j];
-                System.out.println(" value[" + j +"]"+ " = " + values[j]);
+                System.out.println(" value[" + j + "]" + " = " + values[j]);
             }
             System.out.println(Thread.currentThread().getName() + " finish summing squares of arrays elements from: " + i * (values.length / numberOfThreads) +
-                    " to: " + ((i == (numberOfThreads - 1)) ? values.length-1 : (values.length / numberOfThreads) * (i + 1)) + " result = " + result);
+                    " to: " + ((i == (numberOfThreads - 1)) ? values.length - 1 : (values.length / numberOfThreads) * (i + 1)) + " result = " + result);
             Thread.sleep(1000);
             phaser.arriveAndAwaitAdvance();
             phaser.arriveAndDeregister();
