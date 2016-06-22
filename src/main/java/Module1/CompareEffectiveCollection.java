@@ -28,7 +28,7 @@ public class CompareEffectiveCollection {
         printedList10K.add(calculateEfficiency("HashSet", hS10K, K10));
         printedList10K.add(calculateEfficiency("TreeSet", tS10K, K10));
 
-        ShowTable table10K = new ShowTable("Size Data 10K", printedList10K);
+        new ShowTable("Size Data 10K", printedList10K);
 
         List<String[]> printedList100K = new ArrayList<>(3);
 
@@ -42,7 +42,7 @@ public class CompareEffectiveCollection {
         printedList100K.add(calculateEfficiency("HashSet", hS100K, K100));
         printedList100K.add(calculateEfficiency("TreeSet", tS100K, K100));
 
-        ShowTable table100K = new ShowTable("Size Data 100K", printedList100K);
+        new ShowTable("Size Data 100K", printedList100K);
 
         List<String[]> printedList1000K = new ArrayList<>(3);
 
@@ -56,7 +56,7 @@ public class CompareEffectiveCollection {
         printedList1000K.add(calculateEfficiency("HashSet", hS1000K, K1000));
         printedList1000K.add(calculateEfficiency("TreeSet", tS1000K, K1000));
 
-        ShowTable table1000K = new ShowTable("Size Data 1000K", printedList1000K);
+        new ShowTable("Size Data 1000K", printedList1000K);
     }
 
     static String[] calculateEfficiency(String aName, List item, int size) {
